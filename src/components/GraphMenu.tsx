@@ -38,7 +38,7 @@ export default function GraphMenu({ disease, gene }: GraphMenuProps) {
           {tabs.map((tab) => (
             <li
               key={tab.value}
-              className={`text-xs lg:text-base cursor-pointer px-3 py-0.5 tracking-wide ${
+              className={`text-xs md:text-base cursor-pointer px-3 py-0.5 tracking-wide ${
                 activeTab === tab.value
                   ? "bg-[#3489CA] text-white border-t border-x border-neutral-300 font-bold"
                   : "text-neutral-900"
@@ -54,10 +54,10 @@ export default function GraphMenu({ disease, gene }: GraphMenuProps) {
       </nav>
 
       <div className="flex flex-col p-4 w-full items-center">
-        <div className="text-sm lg:text-lg mb-2 text-neutral-500">
+        <div className="text-sm md:text-lg mb-2 text-neutral-500">
           Data Type Score: {gene.target.approvedSymbol} and {disease.name}
         </div>
-        <div className="w-full lg:w-10/12 h-full">
+        <div className="w-full md:w-10/12 h-full">
           { activeTab === "bar" && (
             <ResponsiveContainer width="100%" height={250}>
               <BarChart

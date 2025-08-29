@@ -44,7 +44,7 @@ export default function DiseaseTable({ efoId }: DiseaseTableProps) {
 
   return (
     <div className="overflow-x-auto">
-      <h1 className="text-lg lg:text-3xl text-slate-700 font-bold leading-relaxed mb-4 w-fit">
+      <h1 className="text-lg md:text-3xl text-slate-700 font-bold leading-relaxed mb-4 w-fit">
         Genes associated with {data?.disease.name}
       </h1>
       <table className="bg-white border border-neutral-400 border-collapse w-full">
@@ -52,7 +52,7 @@ export default function DiseaseTable({ efoId }: DiseaseTableProps) {
           <tr>
             <th/>
             {headers.map((header, idx) => (
-              <th key={"header-" + idx} className="text-xs lg:text-base border border-neutral-400 px-2 py-0.5 lg:px-4 lg:py-2 font-bold text-neutral-900">
+              <th key={"header-" + idx} className="text-xs md:text-base border border-neutral-400 px-2 py-0.5 md:px-4 md:py-2 font-bold text-neutral-900">
                 {header}
               </th>
             ))}
@@ -89,14 +89,14 @@ export default function DiseaseTable({ efoId }: DiseaseTableProps) {
                     role="button"
                     tabIndex={0}
                     aria-label={selected ? "Collapse Graphs" : "Expand Graphs"}
-                    className="border border-neutral-400 bg-[#3489CA] hover:bg-[#3b97db] active:bg-[#2973a7] focus:bg-[#2973a7] hover:cursor-pointer transition-all px-2 py-0.5 lg:px-4 lg:py-2 focus:outline-0"
+                    className="border border-neutral-400 bg-[#3489CA] hover:bg-[#3b97db] active:bg-[#2973a7] focus:bg-[#2973a7] hover:cursor-pointer transition-all px-2 py-0.5 md:px-4 md:py-2 focus:outline-0"
                   >
                     { !selected ? (
                       <BiPlus className="text-white mx-auto" />
                     ) : <BiMinus className="text-white mx-auto" />}
                   </td>
                   {rows.map((cell, idx) => (
-                    <td key={"cell-" + idx} className="text-xs lg:text-base border border-neutral-400 px-2 py-0.5 lg:px-4 lg:py-2 tracking-wide text-neutral-900">{cell}</td>
+                    <td key={"cell-" + idx} className="text-xs md:text-base border border-neutral-400 px-2 py-0.5 md:px-4 md:py-2 tracking-wide text-neutral-900">{cell}</td>
                   ))}
                 </tr>
                 { selected && (

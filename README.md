@@ -34,3 +34,4 @@ The entire page exists inside of [page.tsx]('src/app/(index)/page.tsx') and uses
 I've used useMemo to optimise any calculations, and I've also included the feature where you can simply change the disease id in the code and the displayed disease will update
 
 You'll find everything related to GraphQL inside of [queries.ts](src/app/lib/queries.ts)
+
