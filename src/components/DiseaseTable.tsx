@@ -20,9 +20,9 @@ export default function DiseaseTable({ efoId }: DiseaseTableProps) {
     errorPolicy: "all"
   })
 
-  const sortedGenes = useMemo(() => {
+  const filteredGenes = useMemo(() => {
     if (!data || !data.disease || !data.disease.associatedTargets || !data.disease.associatedTargets.rows) return []
-    return data.disease.associatedTargets.rows.slice().sort((a, b) => b.score - a.score)
+    return data.disease.associatedTargets.rows.slice().sort((a, b) => b.score - a.score).slice(0, 10)
   }, [data])
 
   const [ selectedGene, setSelectedGene ] = useState<AssociatedDisease | null>(null)
@@ -59,7 +59,7 @@ export default function DiseaseTable({ efoId }: DiseaseTableProps) {
           </tr>
         </thead>
         <tbody>
-          {sortedGenes.map((gene: AssociatedDisease) => {
+          {filteredGenes.map((gene: AssociatedDisease) => {
 
             const selected = selectedGene && selectedGene.target.id === gene.target.id
 

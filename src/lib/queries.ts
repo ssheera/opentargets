@@ -34,11 +34,12 @@ export type DiseaseQueryVariables = {
   efoId: string
 }
 
+// Had to add extra data like disease->name and target->approvedName
 export const GET_DISEASE: TypedDocumentNode<DiseaseQuery, DiseaseQueryVariables> = gql`
 query GetDiseaseAssociatedTargets($efoId: String!) {
   disease(efoId: $efoId) {
     name
-    associatedTargets(page: { index: 0, size: 10 }) {
+    associatedTargets(page: { index: 0, size: 25 }) {
       rows {
         target {
           id
