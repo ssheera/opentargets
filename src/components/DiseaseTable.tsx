@@ -21,14 +21,14 @@ export default function DiseaseTable({ efoId }: DiseaseTableProps) {
   })
 
   const sortedGenes = useMemo(() => {
-    if (!data) return []
+    if (!data || !data.disease || !data.disease.associatedTargets || !data.disease.associatedTargets.rows) return []
     return data.disease.associatedTargets.rows.slice().sort((a, b) => b.score - a.score)
   }, [data])
 
   const [ selectedGene, setSelectedGene ] = useState<AssociatedDisease | null>(null)
 
   if (error) return <ErrorComponent error={error.message} />
-  if (!data) return <ErrorComponent error="No data returned from server" />
+  if (!data || !data.disease || !data.disease.associatedTargets || !data.disease.associatedTargets.rows) return <ErrorComponent error="No data returned from server" />
 
   function toggleGene(targetGene: AssociatedDisease) {
     if (selectedGene && targetGene.target.id === selectedGene.target.id)
@@ -43,16 +43,16 @@ export default function DiseaseTable({ efoId }: DiseaseTableProps) {
   ]
 
   return (
-    <>
-      <h1 className="text-3xl text-slate-700 font-bold leading-relaxed mb-4 w-fit">
+    <div className="overflow-x-auto">
+      <h1 className="text-lg lg:text-3xl text-slate-700 font-bold leading-relaxed mb-4 w-fit">
         Genes associated with {data?.disease.name}
       </h1>
-      <table className="border border-neutral-400 border-collapse w-full">
+      <table className="bg-white border border-neutral-400 border-collapse w-full">
         <thead>
           <tr>
             <th/>
             {headers.map((header, idx) => (
-              <th key={"header-" + idx} className="border border-neutral-400 px-4 py-2 font-bold text-neutral-900">
+              <th key={"header-" + idx} className="text-xs lg:text-base border border-neutral-400 px-2 py-0.5 lg:px-4 lg:py-2 font-bold text-neutral-900">
                 {header}
               </th>
             ))}
@@ -89,14 +89,14 @@ export default function DiseaseTable({ efoId }: DiseaseTableProps) {
                     role="button"
                     tabIndex={0}
                     aria-label={selected ? "Collapse Graphs" : "Expand Graphs"}
-                    className="border border-neutral-400 bg-[#3489CA] hover:bg-[#3b97db] active:bg-[#2973a7] focus:bg-[#2973a7] hover:cursor-pointer transition-all px-4 py-2 focus:outline-0"
+                    className="border border-neutral-400 bg-[#3489CA] hover:bg-[#3b97db] active:bg-[#2973a7] focus:bg-[#2973a7] hover:cursor-pointer transition-all px-2 py-0.5 lg:px-4 lg:py-2 focus:outline-0"
                   >
                     { !selected ? (
-                      <BiPlus className="text-white w-4 h-6 mx-auto" />
-                    ) : <BiMinus className="text-white w-4 h-6 mx-auto" />}
+                      <BiPlus className="text-white mx-auto" />
+                    ) : <BiMinus className="text-white mx-auto" />}
                   </td>
                   {rows.map((cell, idx) => (
-                    <td key={"cell-" + idx} className="border border-neutral-400 px-4 py-2 tracking-wide text-neutral-900">{cell}</td>
+                    <td key={"cell-" + idx} className="text-xs lg:text-base border border-neutral-400 px-2 py-0.5 lg:px-4 lg:py-2 tracking-wide text-neutral-900">{cell}</td>
                   ))}
                 </tr>
                 { selected && (
@@ -111,7 +111,7 @@ export default function DiseaseTable({ efoId }: DiseaseTableProps) {
           })}
         </tbody>
       </table>
-    </>
+    </div>
   )
 }
 
